@@ -1,0 +1,12 @@
+Tee vscoden agentille prompti joka
+
+- tekee uuden express.js projektin
+- käytössä typescript
+- kirjastot: cors, helmet, dotenv, morgan
+- src kansioon lähdekoodi
+   - app.ts, index.ts, middleware.ts
+- src/api kansioon routerit, controllerit ja modelit
+   - tee versiokansio v1
+- Tee yksinkertaiset esimerkit routerista, controllerista ja modelista. Päätetään tietokanta myöhemmin
+- älä tee mitään muuta. Tarkoituksena tehdä aluksi sovelluspohja
+

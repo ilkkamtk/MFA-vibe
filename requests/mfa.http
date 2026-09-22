@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+
+### API v1
+GET {{baseUrl}}/api/v1/
+
+### Generate MFA secret
+POST {{baseUrl}}/api/v1/mfa/secret
+Content-Type: application/json
+
+{
+  "email": "test@example.com"
+}
+
+### Register user, save MFA data, and generate QR code
+POST {{baseUrl}}/api/v1/mfa/register
+Content-Type: application/json
+
+{
+  "username": "test_user2",
+  "email": "test2@example.com",
+  "password": "12345"
+}
+
+### Verify TOTP code, fetch user from Auth API, and generate JWT
+POST {{baseUrl}}/api/v1/mfa/verify
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "code": "123456"
+}
