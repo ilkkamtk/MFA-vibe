@@ -1,10 +1,8 @@
 import { Router } from 'express';
 import mfaRouter from './routers/mfaRouter';
-import exampleRouter from './routers/exampleRouter';
 
 const router = Router();
 
-router.use('/', exampleRouter);
-router.use('/mfa', mfaRouter);
+router.use('/auth', mfaRouter);
 
 export default router;

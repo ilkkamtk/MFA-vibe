@@ -8,7 +8,7 @@ import {
 const mfaRouter = Router();
 
 mfaRouter.post('/secret', generateMfaSecret);
-mfaRouter.post('/register', registerUser);
+mfaRouter.post('/setup', registerUser);
 mfaRouter.post('/verify', verifyMfaCode);
 
 export default mfaRouter;
