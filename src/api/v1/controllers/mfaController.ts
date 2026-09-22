@@ -1,5 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { LoginResponse, User, UserResponse } from 'hybrid-types';
+import {
+  LoginResponse,
+  User,
+  UserResponse,
+  UserWithNoPassword,
+} from 'hybrid-types';
 import jwt from 'jsonwebtoken';
 import { Secret, TOTP } from 'otpauth';
 import QRCode from 'qrcode';
@@ -139,9 +144,11 @@ export const verifyMfaCode = async (
       throw new CustomError('Invalid TOTP code', 401);
     }
 
-    const user = await fetchData<UserResponse>(
+    const user = await fetchData<UserWithNoPassword>(
       `${authApiUrl}/api/v1/users/${mfaData.userId}`,
     );
+
+    console.log(user, mfaData);
 
     const jwtSecret = process.env.JWT_SECRET;
 
@@ -151,14 +158,14 @@ export const verifyMfaCode = async (
 
     const token = jwt.sign(
       {
-        user_id: user.user.user_id,
-        level_name: user.user.level_name,
+        user_id: user.user_id,
+        level_name: user.level_name,
       },
       jwtSecret,
     );
 
     response.json({
-      ...user,
+      user,
       message: 'MFA login successful',
       token,
     });
